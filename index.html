@@ -29,7 +29,7 @@ img,video,iframe{max-width:100%;height:auto;display:block}
 .topbar{direction:ltr}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
-.brand-logo{width:28px;height:28px;border-radius:8px;background:var(--brand);box-shadow:var(--shadow)}
+.brand-logo{width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:var(--shadow)}
 .brand-title{direction:rtl}
 .lang{position:relative}
 .lang select{appearance:none;padding:10px 42px 10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="%230A7B56" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;font-weight:700;direction:ltr;max-width:100%}
@@ -256,7 +256,7 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
   <div class="container topbar">
     <div class="wrap">
       <div class="brand">
-        <span class="brand-logo" aria-hidden="true"></span>
+        <img src="media/petition-192.png" alt="Farsi Führerschein Logo" class="brand-logo" width="28" height="28">
         <span class="brand-title" id="brandTitle">Farsi Führerschein</span>
       </div>
       <div class="lang" aria-label="Language">
