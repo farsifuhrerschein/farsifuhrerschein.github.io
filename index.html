@@ -601,15 +601,23 @@ body.has-sticky-padding{padding-bottom:84px}
 </script>
 <script>
 (function(){
-  const cta=document.getElementById('stickyCta');
+  const ctaWrap=document.querySelector('.sticky-cta');
   const anchor=document.getElementById('cta-anchor');
   const body=document.body;
+
   function onScroll(){
-    const anchorTop=anchor.getBoundingClientRect().top+window.scrollY;
-    const viewBottom=window.scrollY+window.innerHeight;
-    if(viewBottom<anchorTop){cta.classList.add('fixed');body.classList.add('has-sticky-padding')}
-    else{cta.classList.remove('fixed');body.classList.remove('has-sticky-padding')}
+    const anchorTop=anchor.getBoundingClientRect().top + window.scrollY;
+    const viewBottom=window.scrollY + window.innerHeight;
+
+    if(viewBottom < anchorTop){
+      ctaWrap.classList.add('fixed');
+      body.classList.add('has-sticky-padding');
+    }else{
+      ctaWrap.classList.remove('fixed');
+      body.classList.remove('has-sticky-padding');
+    }
   }
+
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll);
   onScroll();
