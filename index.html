@@ -25,7 +25,8 @@ a{color:var(--brand);text-decoration:none}
 a:hover{color:var(--brand2)}
 img,video,iframe{max-width:100%;height:auto;display:block}
 .container{max-width:var(--max);margin-inline:auto;padding:0 20px}
-.header{position: sticky;top: 0;z-index: 100;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,#ffffff);padding-top: env(safe-area-inset-top);-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-backface-visibility: hidden;backface-visibility: hidden;}
+.header-wrap{position:sticky;top:env(safe-area-inset-top,0);z-index:100;background:linear-gradient(180deg,#f4fff9,#ffffff);border-bottom:1px solid var(--border)}
+.header{background:transparent;border:0}
 .topbar{direction:ltr}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
@@ -59,9 +60,8 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 .faq summary{font-weight:700;cursor:pointer}
 .sticky-cta{background:transparent;border:0;padding:0}
 .sticky-cta .cta{display:block;width:100%;justify-content:center;text-align:center}
-.cta.float{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;box-shadow:var(--shadow);}
-@media (min-width:1025px){.cta.float{position:sticky;bottom:0}}
-body.has-sticky-padding{padding-bottom:96px}
+.cta.is-fixed{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:70;box-shadow:var(--shadow)}
+body.has-sticky-padding{padding-bottom:88px}
 .footer{border-top:1px solid var(--border);background:#fafafa;color:#445}
 .footer .container{padding-top:18px;padding-bottom:28px}
 .footer .small{font-size:.92rem;color:#667}
@@ -255,25 +255,26 @@ body.has-sticky-padding{padding-bottom:96px}
 </script>
 </head>
 <body>
-<header class="header">
-  <div class="container topbar">
-    <div class="wrap">
-      <div class="brand">
-        <img src="media/petition-192.png" alt="Farsi Führerschein Logo" class="brand-logo" width="28" height="28">
-        <span class="brand-title" id="brandTitle">Farsi Führerschein</span>
+  <div class="header-wrap">
+    <header class="header">
+      <div class="container topbar">
+        <div class="wrap">
+          <div class="brand">
+            <img src="media/petition-192.png" alt="Farsi Führerschein Logo" class="brand-logo" width="28" height="28">
+            <span class="brand-title" id="brandTitle">Farsi Führerschein</span>
+          </div>
+          <div class="lang" aria-label="Language">
+            <label for="lang" class="visually-hidden" style="position:absolute;left:-9999px">Language</label>
+            <select id="lang" aria-label="Language switch">
+              <option value="fa">فارسی</option>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="lang" aria-label="Language">
-        <label for="lang" class="visually-hidden" style="position:absolute;left:-9999px">Language</label>
-        <select id="lang" aria-label="Language switch">
-          <option value="fa">فارسی</option>
-          <option value="de">Deutsch</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-    </div>
+    </header>
   </div>
-</header>
-
 <main>
   <section id="fa" data-lang="fa" class="container section show">
     <div class="hero">
@@ -601,23 +602,21 @@ body.has-sticky-padding{padding-bottom:96px}
 </script>
 <script>
 (function(){
-  const cta = document.getElementById('stickyCta');   // خود دکمه
+  const btn = document.getElementById('stickyCta');
   const anchor = document.getElementById('cta-anchor');
   const body = document.body;
 
   function onScroll(){
     const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
     const viewBottom = window.scrollY + window.innerHeight;
-
-    if (viewBottom < anchorTop){
-      cta.classList.add('float');           // فقط دکمه شناور شود
+    if (viewBottom < anchorTop) {
+      btn.classList.add('is-fixed');
       body.classList.add('has-sticky-padding');
     } else {
-      cta.classList.remove('float');        // به جای اصلی‌اش برگردد
+      btn.classList.remove('is-fixed');
       body.classList.remove('has-sticky-padding');
     }
   }
-
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
