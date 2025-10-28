@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="icon" type="image/x-icon" href="media/petition.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="media/petition-192.png">
 <link rel="apple-touch-icon" sizes="512x512" href="media/petition-512.png">
@@ -25,7 +25,7 @@ a{color:var(--brand);text-decoration:none}
 a:hover{color:var(--brand2)}
 img,video,iframe{max-width:100%;height:auto;display:block}
 .container{max-width:var(--max);margin-inline:auto;padding:0 20px}
-.header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,#ffffff);-webkit-transform:translateZ(0);transform:translateZ(0)}
+.header{position: sticky;top: 0;z-index: 100;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,#ffffff);padding-top: env(safe-area-inset-top);-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-backface-visibility: hidden;backface-visibility: hidden;}
 .topbar{direction:ltr}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
