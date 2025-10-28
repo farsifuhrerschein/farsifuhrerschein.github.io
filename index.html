@@ -27,12 +27,12 @@ img,video,iframe{max-width:100%;height:auto;display:block}
 .container{max-width:var(--max);margin-inline:auto;padding:0 20px}
 .safe-top{position:sticky;top:0;height:1px;pointer-events:none;z-index:-1}
 .header{
-  position:sticky;top:0;z-index:1000;
+  position:fixed; top:0; left:0; right:0; z-index:1000;
   border-bottom:1px solid var(--border);
   background:linear-gradient(180deg,#f4fff9,#ffffff);
   padding-top:env(safe-area-inset-top);
 }
-
+.header-spacer{ height:var(--header-h,72px); }
 .topbar{direction:ltr}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
@@ -68,8 +68,7 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 .sticky-cta .cta{display:block;width:100%;justify-content:center;text-align:center;transition:all .3s ease}
 .cta.is-fixed{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));width:66%;max-width:420px;z-index:70;box-shadow:var(--shadow);border-radius:14px}
 .cta.is-fixed:hover{transform:translateX(-50%) scale(1.02)}
-body.has-sticky-padding{padding-bottom:96px}
-.footer{border-top:1px solid var(--border);background:#fafafa;color:#445}
+body.has-sticky-padding{padding-bottom:96px}.footer{border-top:1px solid var(--border);background:#fafafa;color:#445}
 .footer .container{padding-top:18px;padding-bottom:28px}
 .footer .small{font-size:.92rem;color:#667}
 [data-lang]{display:none}
@@ -262,9 +261,9 @@ body.has-sticky-padding{padding-bottom:96px}
 </script>
 </head>
 <body>
-  <div class="safe-top" aria-hidden="true"></div>
   <div class="header-wrap">
     <header class="header">
+      <div id="headerSpacer" class="header-spacer" aria-hidden="true"></div>
       <div class="container topbar">
         <div class="wrap">
           <div class="brand">
@@ -569,7 +568,15 @@ body.has-sticky-padding{padding-bottom:96px}
     </p>
   </div>
 </footer>
-
+<script>
+(function(){
+  const header=document.querySelector('.header');
+  function setH(){ document.documentElement.style.setProperty('--header-h', header.offsetHeight+'px'); }
+  window.addEventListener('load', setH, {once:true});
+  window.addEventListener('resize', setH);
+  setH();
+})();
+</script>
 <script>
 (function(){
   const sel=document.getElementById('lang');
