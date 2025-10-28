@@ -25,7 +25,7 @@ a{color:var(--brand);text-decoration:none}
 a:hover{color:var(--brand2)}
 img,video,iframe{max-width:100%;height:auto;display:block}
 .container{max-width:var(--max);margin-inline:auto;padding:0 20px}
-.header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,transparent)}
+.header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,#ffffff);-webkit-transform:translateZ(0);transform:translateZ(0)}
 .topbar{direction:ltr}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
@@ -57,8 +57,11 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 .faq details{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:var(--shadow)}
 .faq details+details{margin-top:10px}
 .faq summary{font-weight:700;cursor:pointer}
-.sticky-cta{position:sticky;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--border);padding:14px 0;z-index:20}
+.sticky-cta{background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--border);padding:14px 0;z-index:60}
 .sticky-cta .cta{width:100%;justify-content:center}
+.sticky-cta.fixed{position:fixed;left:0;right:0;bottom:calc(0px + env(safe-area-inset-bottom))}
+@media (min-width:1025px){.sticky-cta.fixed{position:sticky;bottom:0}}
+body.has-sticky-padding{padding-bottom:84px}
 .footer{border-top:1px solid var(--border);background:#fafafa;color:#445}
 .footer .container{padding-top:18px;padding-bottom:28px}
 .footer .small{font-size:.92rem;color:#667}
@@ -538,7 +541,7 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
       </div>
     </div>
   </section>
-
+  <div id="cta-anchor"></div>
   <div class="sticky-cta">
     <div class="container">
       <a id="stickyCta" class="cta" href="https://epetitionen.bundestag.de/petitionen/_2025/_08/_31/Petition_185937.$$$.a.u.html" target="_blank" rel="noopener nofollow ugc">همین حالا امضا کنید</a>
@@ -594,6 +597,22 @@ h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
   sel.addEventListener('change',e=>show(e.target.value));
   window.addEventListener('hashchange',init);
   init();
+})();
+</script>
+<script>
+(function(){
+  const cta=document.getElementById('stickyCta');
+  const anchor=document.getElementById('cta-anchor');
+  const body=document.body;
+  function onScroll(){
+    const anchorTop=anchor.getBoundingClientRect().top+window.scrollY;
+    const viewBottom=window.scrollY+window.innerHeight;
+    if(viewBottom<anchorTop){cta.classList.add('fixed');body.classList.add('has-sticky-padding')}
+    else{cta.classList.remove('fixed');body.classList.remove('has-sticky-padding')}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
 })();
 </script>
 </body>
