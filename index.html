@@ -30,65 +30,81 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.7}
-img{max-width:100%;height:auto;display:block}
+
+/* --- RTL overflow fix pack --- */
+html, body { overflow-x: hidden; }
+.container, .header, .hero, .grid-2, .sticky-cta { max-width: 100vw; overflow-x: hidden; }
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+.hero-card, .figure { overflow: hidden; }
+
+/* Typography / Base */
 a{color:var(--brand);text-decoration:none}
 a:hover{color:var(--brand2)}
-.container{max-width:var(--max);margin-inline:auto;padding:0 16px}
+.container{max-width:var(--max);margin-inline:auto;padding:0 20px}
 
 /* --------- Header / Topbar --------- */
 .header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,#f4fff9,transparent)}
-.topbar{direction:ltr; /* ثابت می‌ماند؛ با تغییر زبان جابجا نمی‌شود */ }
+.topbar{direction:ltr;} /* dropdown ثابت و LTR */
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
 .brand-logo{width:28px;height:28px;border-radius:8px;background:var(--brand);box-shadow:var(--shadow)}
-.brand-title{direction:rtl} /* فقط متن برند راست‌به‌چپ شود (وقتی fa) */
+.brand-title{direction:rtl} /* فقط متن برند وقتی fa است RTL می‌شود */
 
 .lang{position:relative}
 .lang select{
   appearance:none; padding:10px 42px 10px 12px; border:1px solid var(--border);
   border-radius:10px; background:#fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="%230A7B56" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
-  font-weight:700; direction:ltr; /* dropdown همیشه چپ‌به‌راست */
+  font-weight:700; direction:ltr; max-width:100%;
 }
 
 /* --------- Hero --------- */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:26px 0 8px}
-@media (max-width:900px){ .hero{grid-template-columns:1fr} }
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:center;padding:26px 0 8px}
+@media (max-width:900px){ .hero{grid-template-columns:minmax(0,1fr)} }
 .hero h1{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.6rem);margin:.2rem 0 0}
 .lead{font-size:clamp(1rem,.95rem + .4vw,1.2rem);color:var(--muted)}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--brand);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;box-shadow:var(--shadow)}
 .cta:hover{background:var(--brand2)}
-.kpis{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;color:#1c332b}
-.kpi{background:#eafff5;border:1px solid #c2f1dd;border-radius:12px;padding:8px 12px;font-weight:700}
-.hero-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;color:#1c332b}
+.kpi{background:#eafff5;border:1px solid #c2f1dd;border-radius:10px;padding:10px 14px;font-weight:700;font-size:.95rem}
+.hero-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
 .hero-card img{aspect-ratio:16/10;object-fit:cover}
-.hero-card .cap{padding:10px 12px;background:var(--surface);border-top:1px solid var(--border);font-size:.95rem}
+.hero-card .cap{padding:12px 14px;background:var(--surface);border-top:1px solid var(--border);font-size:.95rem}
 
 /* --------- Sections --------- */
 .section{padding:24px 0}
-h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
-.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+h2.section-title{margin:0 0 12px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
+.grid-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:900px){ .grid-2{grid-template-columns:minmax(0,1fr)} }
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);line-height:1.6}
 .badge{display:inline-block;background:#ffeb99;color:#553e00;border:1px solid #f3d96a;padding:.2rem .55rem;border-radius:8px;margin-inline-start:.35rem;font-weight:700;font-size:.82rem}
 .keywords{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:8px}
-.keyword{background:#f2f6ff;border:1px solid #dbe5ff;border-radius:10px;padding:8px 10px;font-size:.95rem}
-.figure{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
-.figure .cap{padding:10px 12px;background:var(--surface);border-top:1px solid var(--border)}
-.faq details{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:#fff;box-shadow:var(--shadow)}
-.faq details + details{margin-top:10px}
+.keyword{background:#f2f6ff;border:1px solid #dbe5ff;border-radius:10px;padding:10px 12px;font-size:.95rem}
+.figure{border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:var(--shadow)}
+.figure .cap{padding:12px 14px;background:var(--surface);border-top:1px solid var(--border)}
+.faq details{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:var(--shadow)}
+.faq details+details{margin-top:10px}
 .faq summary{font-weight:700;cursor:pointer}
 
 /* --------- Sticky CTA --------- */
-.sticky-cta{position:sticky;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--border);padding:12px 0;z-index:20}
+.sticky-cta{position:sticky;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(6px);border-top:1px solid var(--border);padding:14px 0;z-index:20}
 .sticky-cta .cta{width:100%;justify-content:center}
 
 /* --------- Footer --------- */
 .footer{border-top:1px solid var(--border);background:#fafafa;color:#445}
+.footer .container{padding-top:18px;padding-bottom:28px}
 .footer .small{font-size:.92rem;color:#667}
 
 /* --------- Language Sections --------- */
 [data-lang]{display:none}
 [data-lang].show{display:block}
+
+/* موبایل: کمی فشرده‌تر */
+@media (max-width:600px){
+  .container{padding-left:14px;padding-right:14px}
+  .card{padding:16px}
+  .figure .cap{padding:10px 12px}
+  .kpi{padding:8px 10px;font-size:.92rem}
+}
 </style>
 
 <!-- JSON-LD (WebSite + Article + FAQ + HowTo + Breadcrumb + AggregateRating) -->
@@ -180,6 +196,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
           <div class="kpi">🎯 هدف: ۵۰٬۰۰۰ امضا</div>
           <div class="kpi">🕒 زمان لازم: ~۳ دقیقه</div>
           <div class="kpi">✅ امکان امضای ناشناس</div>
+          <div class="kpi">🔒 امضا تعهد مدنی یا مالی برای شما ایجاد نمی‌کند</div>
         </div>
         <p style="margin-top:14px">
           <a class="cta" href="https://epetitionen.bundestag.de/petitionen/_2025/_08/_31/Petition_185937.$$$.a.u.html" target="_blank" rel="noopener nofollow ugc">رفتن به صفحه رسمی پتیشن Bundestag</a>
@@ -217,7 +234,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 
         <h3 style="margin:1rem 0 .4rem">آموزش تصویری (ویدیو)</h3>
         <div class="figure">
-          <iframe width="100%" height="315" src="https://youtube.com/shorts/ANSvOpdz8ko" title="آموزش تصویری امضای پتیشن ePetitionen" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/ANSvOpdz8ko" title="آموزش تصویری امضای پتیشن ePetitionen" frameborder="0" allowfullscreen></iframe>
           <div class="cap">ویدیوی آموزشی امضا در ePetitionen – Bundestag</div>
         </div>
       </div>
@@ -266,6 +283,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
           <div class="kpi">🎯 Ziel: 50.000 Mitzeichnungen</div>
           <div class="kpi">🕒 Aufwand: ~3 Minuten</div>
           <div class="kpi">✅ Anonymes Mitzeichnen möglich</div>
+          <div class="kpi">🔒 Die Teilnahme begründet keine rechtliche oder finanzielle Haftung</div>
         </div>
         <p style="margin-top:14px">
           <a class="cta" href="https://epetitionen.bundestag.de/petitionen/_2025/_08/_31/Petition_185937.$$$.a.u.html" target="_blank" rel="noopener nofollow ugc">Zur offiziellen Petition (Bundestag)</a>
@@ -325,7 +343,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 
         <h3 style="margin:1rem 0 .4rem">FAQ</h3>
         <div class="faq">
-          <details open><summary>Warum ist meine Mitzeichnung wichtig?</summary><p>Ab 50.000 Mitzeichnungen erfährt das Anliegen bundesweite Beachtung.</p></details>
+          <details open><summary>Warum ist meine Mitzeichnung wichtig?</summary><p>Ab 50.000 Mitzeichnungen erhält das Anliegen bundesweite Beachtung.</p></details>
           <details><summary>Ist diese Seite offiziell?</summary><p>Nein. Es handelt sich um eine unabhängige Informationsseite mit direktem Link zur offiziellen ePetitionen-Seite.</p></details>
           <details><summary>Kann ich anonym mitzeichnen?</summary><p>Ja, Sie können mit Ihrer Mitzeichner-Nummer gelistet werden.</p></details>
         </div>
@@ -345,6 +363,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
           <div class="kpi">🎯 Goal: 50,000 signatures</div>
           <div class="kpi">🕒 Time needed: ~3 minutes</div>
           <div class="kpi">✅ Anonymous signing supported</div>
+          <div class="kpi">🔒 Signing does not create legal or financial liability for you</div>
         </div>
         <p style="margin-top:14px">
           <a class="cta" href="https://epetitionen.bundestag.de/petitionen/_2025/_08/_31/Petition_185937.$$$.a.u.html" target="_blank" rel="noopener nofollow ugc">Go to the official e-petition</a>
@@ -404,7 +423,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
         <div class="faq">
           <details open><summary>Why does my signature matter?</summary><p>Once 50,000 signatures are reached, the issue gains national visibility and can be formally considered.</p></details>
           <details><summary>Is this an official government page?</summary><p>No. This is an independent information page linking to the official Bundestag ePetitionen site.</p></details>
-          <details><summary>Can I sign anonymously?</summary><p>Yes, you can appear publicly under your “Mitzeichner” (supporter) number.</p></details>
+          <details><summary>Can I sign anonymously?</summary><p>Yes, you can appear publicly under your “Mitzeichner” (supporter) number only.</p></details>
         </div>
 
         <p style="margin-top:14px"><a class="cta" href="https://epetitionen.bundestag.de/petitionen/_2025/_08/_31/Petition_185937.$$$.a.u.html" target="_blank" rel="noopener nofollow ugc">Go to the official e-petition</a></p>
@@ -422,7 +441,7 @@ h2.section-title{margin:0 0 8px;font-size:clamp(1.2rem,1rem + .9vw,1.7rem)}
 <footer class="footer">
   <div class="container section">
     <p class="small" id="footerNote">© 2025 – جامعه فارسی‌زبانان آلمان. این صفحه صرفاً اطلاع‌رسانی است و به ePetitionen (Bundestag) لینک می‌دهد.</p>
-    <p class="small">Canonical: https://farsifuhrerschein.github.io/ · Sitemap: https://farsifuhrerschein.github.io/sitemap.xml · Robots: https://farsifuhrerschein.github.io/robots.txt</p>
+    <!-- خط اطلاع از canonical/sitemap/robots را عمداً حذف کردیم تا برای کاربر نمایش داده نشود -->
   </div>
 </footer>
 
