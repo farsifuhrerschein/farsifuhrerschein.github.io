@@ -668,7 +668,7 @@ body.has-sticky-padding{padding-bottom:96px}.footer{border-top:1px solid var(--b
 </script>
 <script>
 window.addEventListener('load', () => {
-  if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'instant' });
+  setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 50);
 });
 </script>
 </body>
