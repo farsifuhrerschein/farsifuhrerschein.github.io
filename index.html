@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl" style="--header-h:88px">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -665,6 +665,11 @@ body.has-sticky-padding{padding-bottom:96px}.footer{border-top:1px solid var(--b
   window.addEventListener('resize', onScroll);
   onScroll();
 })();
+</script>
+<script>
+window.addEventListener('load', () => {
+  if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'instant' });
+});
 </script>
 </body>
 </html>
