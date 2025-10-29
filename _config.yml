@@ -1,0 +1,3 @@
+markdown: kramdown
+plugins: []
+exclude: ['README.md', 'LICENSE', 'Gemfile', 'Gemfile.lock']
