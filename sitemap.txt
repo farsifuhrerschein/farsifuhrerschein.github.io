@@ -1,0 +1,13 @@
+https://farsifuhrerschein.github.io/
+https://farsifuhrerschein.github.io/#fa
+https://farsifuhrerschein.github.io/#de
+https://farsifuhrerschein.github.io/#en
+https://farsifuhrerschein.github.io/images/step-1-petition-intro.jpg
+https://farsifuhrerschein.github.io/images/step-2-login.jpg
+https://farsifuhrerschein.github.io/images/step-3-form-top.jpg
+https://farsifuhrerschein.github.io/images/step-3-form-bottom.jpg
+https://farsifuhrerschein.github.io/images/step-4-success.jpg
+https://farsifuhrerschein.github.io/media/petition-192.png
+https://farsifuhrerschein.github.io/media/petition-512.png
+https://farsifuhrerschein.github.io/sitemap.xml
+https://farsifuhrerschein.github.io/robots.txt
