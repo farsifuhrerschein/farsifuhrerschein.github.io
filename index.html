@@ -93,7 +93,12 @@ body.has-sticky-padding{padding-bottom:96px}.footer{border-top:1px solid var(--b
       "@id": "https://farsifuhrerschein.github.io/#website",
       "url": "https://farsifuhrerschein.github.io/",
       "name": "Farsi Führerschein",
-      "image": "https://farsifuhrerschein.github.io/media/petition-192.png",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://farsifuhrerschein.github.io/media/petition-192.png",
+        "width": 192,
+        "height": 192
+      },
       "inLanguage": ["fa-IR","de-DE","en"],
       "publisher": {"@id": "https://farsifuhrerschein.github.io/#org"},
       "potentialAction": {
@@ -106,13 +111,26 @@ body.has-sticky-padding{padding-bottom:96px}.footer{border-top:1px solid var(--b
       "@type": "Organization",
       "@id": "https://farsifuhrerschein.github.io/#org",
       "name": "Community Initiative – Farsi Führerschein",
-      "url": "https://farsifuhrerschein.github.io/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://farsifuhrerschein.github.io/media/petition-512.png",
+        "url": "https://farsifuhrerschein.github.io/favicon-512x512.png",
         "width": 512,
         "height": 512
       },
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "https://farsifuhrerschein.github.io/apple-touch-icon.png",
+          "width": 180,
+          "height": 180
+        },
+        {
+          "@type": "ImageObject",
+          "url": "https://farsifuhrerschein.github.io/favicon-192x192.png",
+          "width": 192,
+          "height": 192
+        }
+      ],
       "contactPoint": [{
         "@type": "ContactPoint",
         "contactType": "Developer Support",
