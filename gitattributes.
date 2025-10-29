@@ -1,1 +1,2 @@
 *.xml text eol=lf linguist-language=XML
+*.xsl text eol=lf linguist-language=XML
